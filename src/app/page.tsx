@@ -26,11 +26,14 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const reqAppConfig = await fetch(`${process.env.BASE_API}/config`, {
-    next: {
-      revalidate: 60,
-    },
-  });
+  const reqAppConfig = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API}/config`,
+    {
+      next: {
+        revalidate: 60,
+      },
+    }
+  );
   const res = await reqAppConfig.json();
   const widgetsProps: WidgetProps[] = res?.data?.widgets;
 
