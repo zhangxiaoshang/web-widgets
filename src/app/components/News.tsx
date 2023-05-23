@@ -1,6 +1,7 @@
 import Image from "next/image";
 import dayjs from "dayjs";
 import { Roboto } from "next/font/google";
+import { NewsOptions } from "@/interface/";
 
 const roboto = Roboto({
   weight: "400",
@@ -76,30 +77,32 @@ function formatTime(val: string): number {
   return Date.now();
 }
 
-interface NewsProps {
-  // 基本信息
-  size: Size;
-  name: string;
-  icon: string;
+// interface NewsProps {
+//   // 基本信息
+//   size: Size;
+//   name: string;
+//   icon: string;
 
-  // 数据获取
-  method: Method;
-  api: string;
-  revalidate?: number;
+//   // 数据获取
+//   origin: string;
+//   method: Method;
+//   api: string;
+//   revalidate?: number;
 
-  // 属性映射
-  mapList: string;
-  mapTitle: string;
-  mapTime: string;
+//   // 属性映射
+//   mapList: string;
+//   mapTitle: string;
+//   mapTime: string;
 
-  linkTemplate: string;
-}
-export default async function News(props: NewsProps) {
+//   linkTemplate: string;
+// }
+export default async function News(props: NewsOptions) {
   const {
     size,
     name,
     icon,
 
+    origin,
     method,
     api,
     revalidate,
@@ -142,12 +145,25 @@ export default async function News(props: NewsProps) {
           : "widget-sm row-span-1 col-span-1"
       }`}
     >
-      <h2 className="flex items-center gap-x-1 h-9 font-bold">
-        <span className="relative w-3.5 h-3.5">
-          <Image src={icon} fill alt={name}></Image>
-        </span>
-        {name}
-      </h2>
+      <div className="flex items-center ">
+        <a
+          href={origin}
+          target="_blank"
+          className="flex items-center gap-x-1 h-9 font-bold"
+        >
+          <span className="relative w-3.5 h-3.5">
+            <Image src={icon} fill alt={name}></Image>
+          </span>
+
+          <h2>{name}</h2>
+        </a>
+
+        {/* extra */}
+        {/* <span className="flex items-center ml-auto">
+          <IconFullScreen active={true} onClick={() => {}}></IconFullScreen>
+          <IconClsoe active={true} onClick={() => {}}></IconClsoe>
+        </span> */}
+      </div>
 
       <ul className="flex-1 overflow-y-auto">
         {list?.map((item: any, index: number) => (
