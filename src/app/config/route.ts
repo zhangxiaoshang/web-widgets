@@ -31,6 +31,19 @@ export async function GET() {
         mapTime: "published_at",
         linkTemplate: "https://www.jinse.cn/lives/{object_id}.html",
       },
+      {
+        type: 2,
+        size: "large",
+        api: "https://danjuanfunds.com/djapi/index_eva/dj",
+        indexCodeList: [
+          "SZ399986",
+          "SH000015",
+          "SH000922",
+          "SZ399550",
+          "SZ399812",
+        ],
+      },
+
       // {
       //   type: 1,
       //   size: "large",

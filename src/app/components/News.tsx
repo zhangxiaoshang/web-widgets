@@ -1,7 +1,8 @@
 import Image from "next/image";
 import dayjs from "dayjs";
 import { Roboto } from "next/font/google";
-import { NewsOptions } from "@/interface/";
+import { NewsOption } from "@/interface/";
+import { Widget, WidgetHeader, WidgetContent } from "./Widget";
 
 const roboto = Roboto({
   weight: "400",
@@ -96,7 +97,7 @@ function formatTime(val: string): number {
 
 //   linkTemplate: string;
 // }
-export default async function News(props: NewsOptions) {
+export default async function News(props: NewsOption) {
   const {
     size,
     name,
@@ -136,70 +137,46 @@ export default async function News(props: NewsOptions) {
 
   return (
     // large: 330*345
-    <div
-      className={`flex flex-col bg-white p-2 rounded-xl ${
-        size === "large"
-          ? "widget-lg row-span-2 col-span-2"
-          : size === "medium"
-          ? "widget-md row-span-1 col-span-2"
-          : "widget-sm row-span-1 col-span-1"
-      }`}
-    >
-      <div className="flex items-center ">
-        <a
-          href={origin}
-          target="_blank"
-          className="flex items-center gap-x-1 h-9 font-bold"
-        >
-          <span className="relative w-3.5 h-3.5">
-            <Image src={icon} fill alt={name}></Image>
-          </span>
+    <Widget size={size}>
+      <WidgetHeader icon={icon} name={name} link={origin}></WidgetHeader>
 
-          <h2>{name}</h2>
-        </a>
+      <WidgetContent>
+        <ul>
+          {list?.map((item: any, index: number) => (
+            <li key={index} className="flex gap-x-1 py-1">
+              {size !== "small" && (
+                <span
+                  className={`flex-none w-5 text-stone-400 ${roboto.className}`}
+                >
+                  {index + 1}
+                </span>
+              )}
 
-        {/* extra */}
-        {/* <span className="flex items-center ml-auto">
-          <IconFullScreen active={true} onClick={() => {}}></IconFullScreen>
-          <IconClsoe active={true} onClick={() => {}}></IconClsoe>
-        </span> */}
-      </div>
-
-      <ul className="flex-1 overflow-y-auto">
-        {list?.map((item: any, index: number) => (
-          <li key={index} className="flex gap-x-1 py-1">
-            {size !== "small" && (
-              <span
-                className={`flex-none w-5 text-stone-400 ${roboto.className}`}
+              <a
+                href={formatLink(linkTemplate, item)}
+                target="_blank"
+                className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap"
+                title={getPropertyByString(item, mapTitle)}
               >
-                {index + 1}
-              </span>
-            )}
+                {getPropertyByString(item, mapTitle)}
+              </a>
 
-            <a
-              href={formatLink(linkTemplate, item)}
-              target="_blank"
-              className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap"
-              title={getPropertyByString(item, mapTitle)}
-            >
-              {getPropertyByString(item, mapTitle)}
-            </a>
-
-            {size !== "small" && (
-              <span
-                className={`flex-none w-22 text-right font-mono text-stone-400 ${roboto.className}`}
-                title={dayjs(
-                  formatTime(getPropertyByString(item, mapTime))
-                ).format("YYYY-MM-DD HH:mm:ss")}
-              >
-                {dayjs(formatTime(getPropertyByString(item, mapTime))).format(
-                  "HH:mm"
-                )}
-              </span>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
+              {size !== "small" && (
+                <span
+                  className={`flex-none w-22 text-right font-mono text-stone-400 ${roboto.className}`}
+                  title={dayjs(
+                    formatTime(getPropertyByString(item, mapTime))
+                  ).format("YYYY-MM-DD HH:mm:ss")}
+                >
+                  {dayjs(formatTime(getPropertyByString(item, mapTime))).format(
+                    "HH:mm"
+                  )}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </WidgetContent>
+    </Widget>
   );
 }

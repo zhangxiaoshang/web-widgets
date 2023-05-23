@@ -1,4 +1,4 @@
-export interface NewsOptions {
+export interface NewsOption {
   type: 1;
   // 基本信息
   size: Size;
@@ -19,6 +19,16 @@ export interface NewsOptions {
   linkTemplate: string;
 }
 
+// 雪球估值
+export interface XueQiuGuZhiOption {
+  type: 2;
+  size: Size;
+  api: string;
+  indexCodeList: string[];
+}
+
+export type WidgetProps = NewsOption | XueQiuGuZhiOption;
+
 export interface AppConfig {
-  widgets: NewsOptions[];
+  widgets: WidgetProps[];
 }
