@@ -2,12 +2,6 @@ import numeral from "numeral";
 import dayjs from "dayjs";
 import { XueQiuGuZhiOption } from "@/interface";
 import { Widget, WidgetHeader, WidgetContent } from "./Widget";
-import { Roboto } from "next/font/google";
-
-const roboto = Roboto({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 const evaMap = {
   low: "偏低",
@@ -46,7 +40,7 @@ export default async function XueQiuGuZhi(props: XueQiuGuZhiOption) {
 
             {size !== "small" && (
               <>
-                <span className="flex-none w-[32px] text-right">PE</span>
+                <span className="flex-none w-[48px] text-right">PE</span>
                 <span className="flex-1 text-right">PE百分位</span>
 
                 <span className="flex-none w-[32px] text-right ml-4">PB</span>
@@ -57,7 +51,7 @@ export default async function XueQiuGuZhi(props: XueQiuGuZhiOption) {
           {myList.map((item: any) => (
             <li
               key={item.id}
-              className={`flex items-center justify-between h-8 ${roboto.className}`}
+              className={`flex items-center justify-between h-8`}
             >
               <span className="flex-none w-[100px]">
                 {item.name}
@@ -77,17 +71,17 @@ export default async function XueQiuGuZhi(props: XueQiuGuZhiOption) {
 
               {size !== "small" && (
                 <>
-                  <span className="flex-none w-[32px] text-right">
+                  <span className="flex-none w-[48px] text-right font-mono">
                     {numeral(item.pe).format("0.00")}
                   </span>
-                  <span className="flex-1 text-right">
+                  <span className="flex-1 text-right font-mono">
                     {numeral(item.pe_percentile).format("0.00%")}
                   </span>
 
-                  <span className="flex-none w-[32px] text-right  ml-4">
+                  <span className="flex-none w-[32px] text-right  ml-4 font-mono">
                     {numeral(item.pb).format("0.00")}
                   </span>
-                  <span className="flex-1 text-right">
+                  <span className="flex-1 text-right font-mono">
                     {numeral(item.pb_percentile).format("0.00%")}
                   </span>
                 </>

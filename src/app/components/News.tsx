@@ -1,13 +1,8 @@
 import Image from "next/image";
 import dayjs from "dayjs";
-import { Roboto } from "next/font/google";
+
 import { NewsOption } from "@/interface/";
 import { Widget, WidgetHeader, WidgetContent } from "./Widget";
-
-const roboto = Roboto({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 function getPropertyByString(obj: any, propString: string): any {
   try {
@@ -145,9 +140,7 @@ export default async function News(props: NewsOption) {
           {list?.map((item: any, index: number) => (
             <li key={index} className="flex gap-x-1 py-1">
               {size !== "small" && (
-                <span
-                  className={`flex-none w-5 text-stone-400 ${roboto.className}`}
-                >
+                <span className={`flex-none w-5 text-stone-400 font-mono`}>
                   {index + 1}
                 </span>
               )}
@@ -163,7 +156,7 @@ export default async function News(props: NewsOption) {
 
               {size !== "small" && (
                 <span
-                  className={`flex-none w-22 text-right font-mono text-stone-400 ${roboto.className}`}
+                  className={`flex-none w-22 text-right font-mono text-stone-400`}
                   title={dayjs(
                     formatTime(getPropertyByString(item, mapTime))
                   ).format("YYYY-MM-DD HH:mm:ss")}

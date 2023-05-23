@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const reqAppConfig = await fetch("http://localhost:3000/config", {
+  const reqAppConfig = await fetch(`${process.env.BASE_API}/config`, {
     next: {
       revalidate: 60,
     },
