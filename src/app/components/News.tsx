@@ -1,5 +1,4 @@
-import Image from "next/image";
-import dayjs from "dayjs";
+import dayjs from "@/utils/dayjs";
 
 import { NewsOption } from "@/interface/";
 import { Widget, WidgetHeader, WidgetContent } from "./Widget";

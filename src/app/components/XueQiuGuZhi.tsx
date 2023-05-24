@@ -26,6 +26,22 @@ export default async function XueQiuGuZhi(props: XueQiuGuZhiOption) {
     indexCodeList.includes(item.index_code)
   );
 
+  const tableHeader = (
+    <li className="flex items-center justify-between h-8 text-[#999]">
+      <span className="flex-none w-[100px]">指数名称</span>
+
+      {size !== "small" && (
+        <>
+          <span className="flex-none w-[48px] text-right">PE</span>
+          <span className="flex-1 text-right">PE百分位</span>
+
+          <span className="flex-none w-[32px] text-right ml-4">PB</span>
+          <span className="flex-1 text-right">PB百分位</span>
+        </>
+      )}
+    </li>
+  );
+
   return (
     <Widget size={size}>
       <WidgetHeader
@@ -35,24 +51,14 @@ export default async function XueQiuGuZhi(props: XueQiuGuZhiOption) {
       ></WidgetHeader>
       <WidgetContent>
         <ul>
-          <li className="flex items-center justify-between h-8 text-[#999]">
-            <span className="flex-none w-[100px]">指数名称</span>
+          {tableHeader}
 
-            {size !== "small" && (
-              <>
-                <span className="flex-none w-[48px] text-right">PE</span>
-                <span className="flex-1 text-right">PE百分位</span>
-
-                <span className="flex-none w-[32px] text-right ml-4">PB</span>
-                <span className="flex-1 text-right">PB百分位</span>
-              </>
-            )}
-          </li>
           {myList.map((item: any) => (
             <li
               key={item.id}
               className={`flex items-center justify-between h-8`}
             >
+              {/* 名称 && 评估 */}
               <span className="flex-none w-[100px]">
                 {item.name}
                 <span
