@@ -19,7 +19,7 @@ function UpDownPercent({
       <span
         style={{
           width: `${(upCount / (upCount + downCount)) * 100}%`,
-          backgroundColor: "rgb(76 191 64)",
+          backgroundColor: "rgb(233 71 72)",
           color: "#333",
         }}
       >
@@ -28,7 +28,7 @@ function UpDownPercent({
       <span
         style={{
           width: `${(downCount / (upCount + downCount)) * 100}%`,
-          backgroundColor: "rgb(233 71 72)",
+          backgroundColor: "rgb(76 191 64)",
           color: "#333",
         }}
       >
