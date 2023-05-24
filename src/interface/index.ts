@@ -27,7 +27,16 @@ export interface XueQiuGuZhiOption {
   indexCodeList: string[];
 }
 
-export type WidgetProps = NewsOption | XueQiuGuZhiOption;
+// 牛熊指标
+export interface NiuXiongZhiBiaoOption {
+  type: 3;
+  size: Size;
+}
+
+export type WidgetProps =
+  | NewsOption
+  | XueQiuGuZhiOption
+  | NiuXiongZhiBiaoOption;
 
 export interface AppConfig {
   widgets: WidgetProps[];

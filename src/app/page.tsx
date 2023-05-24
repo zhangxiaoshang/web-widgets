@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { WidgetProps } from "@/interface";
 import News from "@/app/components/News";
 import XueQiuGuZhi from "./components/XueQiuGuZhi";
+import NiuXiongZhiBiao from "./components/NiuXiongZhiBiao";
 
 type RenderStrategy = {
   [key: number]: (props: WidgetProps) => React.ReactElement;
@@ -14,6 +15,11 @@ const renderStrategy: RenderStrategy = {
   2: (props) => (
     /* @ts-expect-error Async Server Component */
     <XueQiuGuZhi key={JSON.stringify(props)} {...props}></XueQiuGuZhi>
+  ),
+
+  3: (props) => (
+    /* @ts-expect-error Async Server Component */
+    <NiuXiongZhiBiao key={JSON.stringify(props)} {...props}></NiuXiongZhiBiao>
   ),
 };
 
@@ -31,7 +37,7 @@ export default async function Home() {
       `${process.env.NEXT_PUBLIC_BASE_API}/config`,
       {
         next: {
-          revalidate: 60,
+          // revalidate: 60,
         },
       }
     );

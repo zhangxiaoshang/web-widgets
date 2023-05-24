@@ -1,5 +1,5 @@
 import numeral from "numeral";
-import dayjs from "dayjs";
+import dayjs from "@/utils/dayjs";
 import { XueQiuGuZhiOption } from "@/interface";
 import { Widget, WidgetHeader, WidgetContent } from "./Widget";
 

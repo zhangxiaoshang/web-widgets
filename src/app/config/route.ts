@@ -5,6 +5,23 @@ export async function GET() {
   const appConfig: AppConfig = {
     widgets: [
       {
+        type: 3,
+        size: "medium",
+      },
+      {
+        type: 2,
+        size: "large",
+        api: "https://danjuanfunds.com/djapi/index_eva/dj",
+        indexCodeList: [
+          "SZ399986",
+          "SH000015",
+          "SH000922",
+          "SZ399550",
+          "SZ399812",
+        ],
+      },
+
+      {
         type: 1,
         size: "large",
         name: "金色财经·7*24快讯",
@@ -33,7 +50,7 @@ export async function GET() {
       },
       {
         type: 1,
-        size: "large",
+        size: "medium",
         name: "近期活动",
         icon: "https://www.jinse.com/favicon.ico",
         origin: "https://www.jinse.com/activity",
@@ -41,7 +58,7 @@ export async function GET() {
         api: "https://api.jinse.cn/v6/activities?page=1&limit=20&classify=all&city=all&date=all",
         mapList: "data.list",
         mapTitle: "title",
-        mapTime: "created_at",
+        mapTime: "",
         linkTemplate: "https://www.jinse.com/activity/{url_key}.html",
       },
       {
@@ -56,18 +73,6 @@ export async function GET() {
         mapTitle: "title",
         mapTime: "",
         linkTemplate: "https://www.mexc.com/zh-CN/support/articles/{id}",
-      },
-      {
-        type: 2,
-        size: "large",
-        api: "https://danjuanfunds.com/djapi/index_eva/dj",
-        indexCodeList: [
-          "SZ399986",
-          "SH000015",
-          "SH000922",
-          "SZ399550",
-          "SZ399812",
-        ],
       },
 
       // {

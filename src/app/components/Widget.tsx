@@ -18,7 +18,7 @@ export function WidgetHeader(
         className="flex items-center gap-x-1 font-bold"
       >
         {!!icon && (
-          <span className="relative w-3.5 h-3.5">
+          <span className="flex-none relative w-3.5 h-3.5">
             <Image src={icon} fill alt={name ?? ""}></Image>
           </span>
         )}
