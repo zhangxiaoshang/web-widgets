@@ -153,7 +153,7 @@ export default async function News(props: NewsOption) {
                 {getPropertyByString(item, mapTitle)}
               </a>
 
-              {size !== "small" && (
+              {size !== "small" && mapTime && (
                 <span
                   className={`flex-none w-22 text-right font-mono text-stone-400`}
                   title={dayjs(
