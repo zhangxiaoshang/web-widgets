@@ -4,7 +4,7 @@ import timezone from "dayjs/plugin/timezone";
 
 _dayjs.extend(utc);
 _dayjs.extend(timezone);
-_dayjs.tz.setDefault("Asia/Shanghai");
+// _dayjs.tz.setDefault("Asia/Shanghai");
 // _dayjs.tz.setDefault("America/New_York");
 
 export const dayjs = _dayjs;
@@ -30,8 +30,7 @@ export function parseTimestamp(val: string): number {
   // 2023-05-22 17:07:08
   const regTime1 = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
   if (regTime1.test(val)) {
-    // return _dayjs(val).tz("Asia/Shanghai").valueOf();
-    return _dayjs(val, "Asia/Shanghai").valueOf();
+    return _dayjs.tz(val, "Asia/Shanghai").valueOf();
   }
 
   console.log("位实现该时间的解析：", val);
