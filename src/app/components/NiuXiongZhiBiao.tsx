@@ -103,7 +103,7 @@ export default async function NiuXiongZhiBiao(props: NiuXiongZhiBiaoOption) {
         name={
           size === "small"
             ? `${dayjs().format("MM-DD HH:mm")}`
-            : `牛熊风向标(${dayjs().format("MM-DD HH:mm")})`
+            : `牛熊风向标(${dayjs().utc().format("MM-DD HH:mm")})`
         }
         icon="https://g1.dfcfw.com/g1/special/favicon_shortcut.ico"
         link="https://emdata.eastmoney.com/nxfxb/index.html"
