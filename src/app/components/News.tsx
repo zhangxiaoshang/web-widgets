@@ -1,11 +1,16 @@
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 import { NewsOption } from "@/interface/";
 import { Widget, WidgetHeader, WidgetContent } from "./Widget";
 import {
-  dayjs,
   parseTimestamp,
   getPropertyByString,
   formatTextByTemplate,
 } from "@/utils";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export default async function News(props: NewsOption) {
   const {
@@ -76,9 +81,9 @@ export default async function News(props: NewsOption) {
                     parseTimestamp(getPropertyByString(mapTime, item))
                   ).format("YYYY-MM-DD HH:mm:ss")}
                 >
-                  {dayjs(
-                    parseTimestamp(getPropertyByString(mapTime, item))
-                  ).format("HH:mm")}
+                  {dayjs(parseTimestamp(getPropertyByString(mapTime, item)))
+                    .tz("Asia/Shanghai")
+                    .format("HH:mm")}
                 </span>
               )}
             </li>
