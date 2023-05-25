@@ -72,13 +72,13 @@ export default async function News(props: NewsOption) {
               {size !== "small" && mapTime && (
                 <span
                   className={`flex-none w-22 text-right font-mono text-stone-400`}
-                  title={dayjs(
-                    parseTimestamp(getPropertyByString(mapTime, item))
-                  ).format("YYYY-MM-DD HH:mm:ss")}
+                  title={dayjs
+                    .tz(parseTimestamp(getPropertyByString(mapTime, item)))
+                    .format("YYYY-MM-DD HH:mm:ss")}
                 >
-                  {dayjs(
-                    parseTimestamp(getPropertyByString(mapTime, item))
-                  ).format("HH:mm")}
+                  {dayjs(parseTimestamp(getPropertyByString(mapTime, item)))
+                    .tz("Asia/Shanghai")
+                    .format("HH:mm")}
                 </span>
               )}
             </li>
