@@ -67,17 +67,17 @@ export function getPropertyByString(prop: string, data: any): any {
   }
 }
 
-export function formatTextByTemplate(template: string, data: {}) {
-  let str = "";
-
+export function formatTextByTemplate(templateOrProp: string, data: {}) {
   // 正则匹配插槽 {name}
   const regexp = /{(\w+)}/g; // {name}
+  const matchList = templateOrProp.match(regexp);
 
-  let match;
-  while ((match = regexp.exec(template)) !== null) {
-    const prop = match[1];
+  if (!matchList) return getPropertyByString(templateOrProp, data);
 
-    str = template.replace(`{${prop}}`, getPropertyByString(prop, data));
+  let str = templateOrProp;
+  for (const item of matchList) {
+    const prop = item.substring(1, item.length - 1);
+    str = str.replace(item, getPropertyByString(prop, data));
   }
 
   return str;

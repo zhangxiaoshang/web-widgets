@@ -49,18 +49,21 @@ export async function GET() {
         linkTemplate: "https://www.jinse.cn/lives/{object_id}.html",
       },
       {
-        type: 1,
+        type: 4,
         size: "medium",
         name: "近期活动",
         icon: "https://www.jinse.com/favicon.ico",
         origin: "https://www.jinse.com/activity",
         method: "GET",
         api: "https://api.jinse.cn/v6/activities?page=1&limit=20&classify=all&city=all&date=all",
+        revalidate: 60,
         mapList: "data.list",
-        mapTitle: "title",
-        mapTime: "",
+
+        titleTemplate: "({address}) {title}",
+        extraTemplate: "{activity_status_str}",
         linkTemplate: "https://www.jinse.com/activity/{url_key}.html",
       },
+
       {
         type: 1,
         size: "large",

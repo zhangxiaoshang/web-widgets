@@ -3,6 +3,7 @@ import { WidgetProps } from "@/interface";
 import News from "@/app/components/News";
 import XueQiuGuZhi from "./components/XueQiuGuZhi";
 import NiuXiongZhiBiao from "./components/NiuXiongZhiBiao";
+import HuoDong from "./components/HuoDong";
 
 type RenderStrategy = {
   [key: number]: (props: WidgetProps) => React.ReactElement;
@@ -21,6 +22,9 @@ const renderStrategy: RenderStrategy = {
     /* @ts-expect-error Async Server Component */
     <NiuXiongZhiBiao key={JSON.stringify(props)} {...props}></NiuXiongZhiBiao>
   ),
+
+  /* @ts-expect-error Async Server Component */
+  4: (props) => <HuoDong key={JSON.stringify(props)} {...props}></HuoDong>,
 };
 
 function renderComp(props: WidgetProps) {

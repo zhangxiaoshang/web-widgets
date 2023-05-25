@@ -33,10 +33,28 @@ export interface NiuXiongZhiBiaoOption {
   size: Size;
 }
 
+// 近期活动
+export interface HuoDongOption {
+  type: 4;
+  size: Size;
+  name: string;
+  icon: string;
+  origin: string;
+  method: Method;
+  api: string;
+  revalidate?: number;
+
+  mapList: string;
+  titleTemplate: string;
+  extraTemplate: string;
+  linkTemplate: string;
+}
+
 export type WidgetProps =
   | NewsOption
   | XueQiuGuZhiOption
-  | NiuXiongZhiBiaoOption;
+  | NiuXiongZhiBiaoOption
+  | HuoDongOption;
 
 export interface AppConfig {
   widgets: WidgetProps[];
