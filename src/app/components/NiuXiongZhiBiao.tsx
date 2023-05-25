@@ -1,7 +1,12 @@
-// import dayjs from "dayjs";
-import { dayjs } from "@/utils";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+// import { dayjs } from "@/utils";
 import { Widget, WidgetHeader, WidgetContent } from "./Widget";
 import { NiuXiongZhiBiaoOption } from "@/interface";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const API =
   "https://datacenter.eastmoney.com/securities/api/data/get?type=RPTAAA_DMSK_TS_CHANGESTATISTICS";
@@ -102,8 +107,8 @@ export default async function NiuXiongZhiBiao(props: NiuXiongZhiBiaoOption) {
       <WidgetHeader
         name={
           size === "small"
-            ? `${dayjs().format("MM-DD HH:mm")}`
-            : `牛熊风向标(${dayjs().utc().format("MM-DD HH:mm")})`
+            ? `${dayjs().tz("Asia/Shanghai").format("MM-DD HH:mm")}`
+            : `牛熊风向标(${dayjs().tz("Asia/Shanghai").format("MM-DD HH:mm")})`
         }
         icon="https://g1.dfcfw.com/g1/special/favicon_shortcut.ico"
         link="https://emdata.eastmoney.com/nxfxb/index.html"
