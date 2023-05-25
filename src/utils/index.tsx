@@ -29,7 +29,7 @@ export function parseTimestamp(val: string): number {
   // 2023-05-22 17:07:08
   const regTime1 = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
   if (regTime1.test(val)) {
-    return dayjs(val).valueOf();
+    return dayjs.tz(val).valueOf();
   }
 
   console.log("位实现该时间的解析：", val);
