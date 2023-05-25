@@ -6,6 +6,8 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Shanghai");
 
+export { dayjs };
+
 /**
  * @description 将时间值转换为ms为单位的时间戳
  * @param val 参数可以是 s | ms
