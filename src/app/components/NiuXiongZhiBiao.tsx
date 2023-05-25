@@ -1,4 +1,5 @@
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
+import { dayjs } from "@/utils";
 import { Widget, WidgetHeader, WidgetContent } from "./Widget";
 import { NiuXiongZhiBiaoOption } from "@/interface";
 
