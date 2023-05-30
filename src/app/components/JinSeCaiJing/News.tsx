@@ -17,7 +17,7 @@ function LinkItem(
 
   const link = formatTextByTemplate(data, linkTemplate);
   const title = formatTextByTemplate(data, nameTemplate);
-  const time = parseTimestamp(getPropertyByString(String(timeProp), data));
+  const time = parseTimestamp(getPropertyByString(data, String(timeProp)));
   const datetimeFormated = dayjs(time)
     .tz("Asia/Shanghai")
     .format("YYYY-MM-DD HH:mm:ss");

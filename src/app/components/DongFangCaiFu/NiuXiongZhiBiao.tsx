@@ -93,7 +93,6 @@ export async function NiuXiongZhiBiao(props: NiuXiongZhiBiaoOption) {
       },
     });
     const data = await res.json();
-    console.log(data);
 
     upCount = data.result.data[0].IND1;
     downCount = data.result.data[0].IND2;

@@ -14,6 +14,8 @@ export { dayjs };
  * @returns ms
  */
 export function parseTimestamp(val: string): number {
+  if (!val) return Date.now();
+
   // 13位时间戳(ms) 无需转换
   const msReg = /^\d{13}$/;
   if (msReg.test(val)) {

@@ -12,7 +12,6 @@ import { WidgetContent } from "@/app/components/Widget/WidgetContent";
 
 // 提取活动地点
 function extractAddress(data: any) {
-  console.log(data.title);
   const props = ["address", "street", "city", "province", "country"];
 
   const reg = /请选择/g;
