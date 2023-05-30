@@ -42,7 +42,9 @@ export function parseTimestamp(val: string): number {
  * @param propString eg: list[0].title
  * @returns
  */
-export function getPropertyByString(prop: string, data: any): any {
+export function getPropertyByString(data: any, prop?: string): any {
+  if (!prop) return null;
+
   try {
     // 将 propString 按 "." 分隔，获取 key 及其父级对象数组
     const propArray = prop.split(".");
@@ -59,7 +61,7 @@ export function getPropertyByString(prop: string, data: any): any {
       return undefined;
     }
 
-    return getPropertyByString(propArray.join("."), childObj);
+    return getPropertyByString(childObj, propArray.join("."));
   } catch (error) {
     console.error(error);
     console.log("getPropertyByString", { data, prop });
@@ -67,17 +69,19 @@ export function getPropertyByString(prop: string, data: any): any {
   }
 }
 
-export function formatTextByTemplate(templateOrProp: string, data: {}) {
+export function formatTextByTemplate(data: {}, templateOrProp?: string) {
+  if (!templateOrProp) return null;
+
   // 正则匹配插槽 {name}
   const regexp = /{(\w+)}/g; // {name}
   const matchList = templateOrProp.match(regexp);
 
-  if (!matchList) return getPropertyByString(templateOrProp, data);
+  if (!matchList) return getPropertyByString(data, templateOrProp);
 
   let str = templateOrProp;
   for (const item of matchList) {
     const prop = item.substring(1, item.length - 1);
-    str = str.replace(item, getPropertyByString(prop, data));
+    str = str.replace(item, getPropertyByString(data, prop));
   }
 
   return str;

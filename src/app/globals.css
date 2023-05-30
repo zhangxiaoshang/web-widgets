@@ -23,17 +23,17 @@ body {
   background: #eceff3;
 }
 
-.widget-lg {
+.widget-large {
   width: calc(20rem + 1.25rem);
   height: calc(22rem + 1.25rem);
 }
 
-.widget-md {
+.widget-meidum {
   width: calc(20rem + 1.25rem);
   height: calc(11rem);
 }
 
-.widget-sm {
+.widget-small {
   width: calc(10rem);
   height: calc(11rem);
 }

@@ -1,48 +1,65 @@
 import { Metadata } from "next";
-import { WidgetProps } from "@/interface";
-import News from "@/app/components/News";
-import XueQiuGuZhi from "./components/XueQiuGuZhi";
-import NiuXiongZhiBiao from "./components/NiuXiongZhiBiao";
-import HuoDong from "./components/HuoDong";
+import { WidgetProps, WidgetType } from "@/interface";
+import { Widget } from "./components/Widget/Widget";
+import { JinSeCaiJinNews } from "./components/JinSeCaiJing/News";
+import { JinSeCaiJinActive } from "./components/JinSeCaiJing/Activity";
+// 雪球
+import { ZhiShuGuZhi } from "./components/XueQiu/ZhiShuGuZhi";
+
+// 东方财富
+import { NiuXiongZhiBiao } from "./components/DongFangCaiFu/NiuXiongZhiBiao";
 
 type RenderStrategy = {
-  [key: number]: (props: WidgetProps) => React.ReactElement;
+  [key: number | string]: (props: WidgetProps) => React.ReactElement;
 };
 
 const renderStrategy: RenderStrategy = {
-  /* @ts-expect-error Async Server Component */
-  1: (props) => <News key={JSON.stringify(props)} {...props}></News>,
-
-  2: (props) => (
+  [WidgetType.JINSECAIJING_NEWS]: (props) => (
     /* @ts-expect-error Async Server Component */
-    <XueQiuGuZhi key={JSON.stringify(props)} {...props}></XueQiuGuZhi>
+    <JinSeCaiJinNews key={JSON.stringify(props)} {...props}></JinSeCaiJinNews>
   ),
 
-  3: (props) => (
+  [WidgetType.JINSECAIJING_ACTIVE]: (props) => (
+    /* @ts-expect-error Async Server Component */
+    <JinSeCaiJinActive
+      key={JSON.stringify(props)}
+      {...props}
+    ></JinSeCaiJinActive>
+  ),
+
+  [WidgetType.XUEQIU_ZHISHUGUZHI]: (props) => (
+    /* @ts-expect-error Async Server Component */
+    <ZhiShuGuZhi key={JSON.stringify(props)} {...props}></ZhiShuGuZhi>
+  ),
+
+  [WidgetType.DONGFANGCAIFU_NIUXIONGZHIBIAO]: (props) => (
     /* @ts-expect-error Async Server Component */
     <NiuXiongZhiBiao key={JSON.stringify(props)} {...props}></NiuXiongZhiBiao>
   ),
-
-  /* @ts-expect-error Async Server Component */
-  4: (props) => <HuoDong key={JSON.stringify(props)} {...props}></HuoDong>,
 };
 
 function renderComp(props: WidgetProps) {
-  return renderStrategy[props.type]?.(props) ?? null;
+  const rendFunc = renderStrategy[props.type];
+
+  if (!rendFunc) {
+    return (
+      <Widget size="medium">
+        <h2>为实现的组件: {props.type}</h2>
+      </Widget>
+    );
+  }
+
+  return rendFunc(props);
 }
 
-export const metadata: Metadata = {
-  title: "好部件",
-};
+export const metadata: Metadata = { title: "好组件" };
 
-export default async function Home() {
+export default async function WidgetPage() {
   try {
     const reqAppConfig = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API}/config`,
       {
-        next: {
-          // revalidate: 60,
-        },
+        next: { revalidate: 10 },
       }
     );
     const res = await reqAppConfig.json();
@@ -55,7 +72,7 @@ export default async function Home() {
         {widgetsProps.map((option) => renderComp(option))}
       </main>
     );
-  } catch (error) {
-    return null;
+  } catch (error: any) {
+    return <p>{error.message}</p>;
   }
 }

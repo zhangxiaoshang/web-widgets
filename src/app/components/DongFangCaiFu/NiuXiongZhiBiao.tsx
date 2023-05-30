@@ -1,8 +1,11 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-// import { dayjs } from "@/utils";
-import { Widget, WidgetHeader, WidgetContent } from "./Widget";
+
+import { Widget } from "@/app/components/Widget/Widget";
+import { WidgetHeader } from "@/app/components/Widget/WidgetHeader";
+import { WidgetContent } from "@/app/components/Widget/WidgetContent";
+
 import { NiuXiongZhiBiaoOption } from "@/interface";
 
 dayjs.extend(utc);
@@ -73,7 +76,7 @@ function DetailData({ size, data }: { size: Size; data: number[] }) {
   );
 }
 
-export default async function NiuXiongZhiBiao(props: NiuXiongZhiBiaoOption) {
+export async function NiuXiongZhiBiao(props: NiuXiongZhiBiaoOption) {
   const { size } = props;
 
   let upCount = 0;

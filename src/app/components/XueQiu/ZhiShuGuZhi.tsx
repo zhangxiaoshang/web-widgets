@@ -1,7 +1,9 @@
 import numeral from "numeral";
 import { dayjs } from "@/utils";
-import { XueQiuGuZhiOption } from "@/interface";
-import { Widget, WidgetHeader, WidgetContent } from "./Widget";
+import { ZhiShuGuZhiOption } from "@/interface";
+import { Widget } from "@/app/components/Widget/Widget";
+import { WidgetHeader } from "@/app/components/Widget/WidgetHeader";
+import { WidgetContent } from "@/app/components/Widget/WidgetContent";
 
 const evaMap = {
   low: "偏低",
@@ -9,34 +11,30 @@ const evaMap = {
   high: "偏高",
 };
 
-export default async function XueQiuGuZhi(props: XueQiuGuZhiOption) {
-  const { size, api, indexCodeList } = props;
+export async function ZhiShuGuZhi(props: ZhiShuGuZhiOption) {
+  const { size, api, codes } = props;
 
   const res = await fetch(api, {
-    next: {
-      revalidate: 60 * 60,
-    },
+    next: { revalidate: 60 * 60 },
   });
   const data = await res.json();
   const items = data.data.items;
 
   const date = items[0].ts;
 
-  const myList = items.filter((item: any) =>
-    indexCodeList.includes(item.index_code)
-  );
+  const myList = items.filter((item: any) => codes.includes(item.index_code));
 
   const tableHeader = (
-    <li className="flex items-center justify-between h-8 text-[#999]">
-      <span className="flex-none w-[100px]">指数名称</span>
+    <li className="flex items-center justify-between h-8 text-[#999] text-xs">
+      <span className="grow shrink-0 w-[90px]">指数名称</span>
 
       {size !== "small" && (
         <>
-          <span className="flex-none w-[48px] text-right">PE</span>
-          <span className="flex-1 text-right">PE百分位</span>
+          <span className="grow shrink-0 w-[48px] text-right">PE</span>
+          <span className="grow shrink-0 w-[56px] text-right">PE百分位</span>
 
-          <span className="flex-none w-[32px] text-right ml-4">PB</span>
-          <span className="flex-1 text-right">PB百分位</span>
+          <span className="grow shrink-0 w-[32px] text-right ml-4">PB</span>
+          <span className="grow shrink-0 w-[56px] text-right">PB百分位</span>
         </>
       )}
     </li>
@@ -49,8 +47,9 @@ export default async function XueQiuGuZhi(props: XueQiuGuZhiOption) {
         icon="https://danjuanfunds.com/images/logo_128@1.png"
         link="https://danjuanfunds.com/djmodule/value-center"
       ></WidgetHeader>
+
       <WidgetContent>
-        <ul>
+        <ul className="text-xs">
           {tableHeader}
 
           {myList.map((item: any) => (
@@ -59,7 +58,7 @@ export default async function XueQiuGuZhi(props: XueQiuGuZhiOption) {
               className={`flex items-center justify-between h-8`}
             >
               {/* 名称 && 评估 */}
-              <span className="flex-none w-[100px]">
+              <span className="grow shrink-0 w-[90px]">
                 {item.name}
                 <span
                   className={`text-xs ${
@@ -77,17 +76,17 @@ export default async function XueQiuGuZhi(props: XueQiuGuZhiOption) {
 
               {size !== "small" && (
                 <>
-                  <span className="flex-none w-[48px] text-right font-mono">
+                  <span className="grow shrink-0 w-[48px] text-right font-mono">
                     {numeral(item.pe).format("0.00")}
                   </span>
-                  <span className="flex-1 text-right font-mono">
+                  <span className="grow shrink-0 w-[56px] text-right font-mono">
                     {numeral(item.pe_percentile).format("0.00%")}
                   </span>
 
-                  <span className="flex-none w-[32px] text-right  ml-4 font-mono">
+                  <span className="grow shrink-0 w-[32px] text-right  ml-4 font-mono">
                     {numeral(item.pb).format("0.00")}
                   </span>
-                  <span className="flex-1 text-right font-mono">
+                  <span className="grow shrink-0 w-[56px] text-right font-mono">
                     {numeral(item.pb_percentile).format("0.00%")}
                   </span>
                 </>

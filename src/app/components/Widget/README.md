@@ -1,0 +1,5 @@
+- Widget(client)
+  - WidgetHeader
+    - Title
+    - action(client)
+  - WidgetContent

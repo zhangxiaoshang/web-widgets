@@ -1,3 +1,10 @@
+export enum WidgetType {
+  JINSECAIJING_NEWS = "JINSECAIJING_NEWS",
+  JINSECAIJING_ACTIVE = "JINSECAIJING_ACTIVE",
+  XUEQIU_ZHISHUGUZHI = "XUEQIU_ZHISHUGUZHI",
+  DONGFANGCAIFU_NIUXIONGZHIBIAO = "DONGFANGCAIFU_NIUXIONGZHIBIAO",
+}
+
 export interface NewsOption {
   type: 1;
   // 基本信息
@@ -27,12 +34,6 @@ export interface XueQiuGuZhiOption {
   indexCodeList: string[];
 }
 
-// 牛熊指标
-export interface NiuXiongZhiBiaoOption {
-  type: 3;
-  size: Size;
-}
-
 // 近期活动
 export interface HuoDongOption {
   type: 4;
@@ -50,11 +51,62 @@ export interface HuoDongOption {
   linkTemplate: string;
 }
 
+// 金色财经·新闻
+export interface JinSeCaiJinNewsOption {
+  type: WidgetType.JINSECAIJING_NEWS;
+  size: Size;
+  icon?: string;
+  name?: string;
+  origin?: string;
+
+  revalidate?: number;
+  api: string;
+
+  dataProp: string;
+  nameTemplate: string;
+  linkTemplate: string;
+  timeProp: string;
+}
+// 金色财经·活动
+export interface JinSeCaiJinActiveOption {
+  type: WidgetType.JINSECAIJING_ACTIVE;
+  size: Size;
+  name: string;
+  icon: string;
+  origin: string;
+
+  revalidate?: number;
+  api: string;
+
+  dataProp: string;
+  nameProp: string;
+  statusProp: string;
+  linkTemplate: string;
+}
+
+// 雪球·指数估值
+export interface ZhiShuGuZhiOption {
+  type: WidgetType.XUEQIU_ZHISHUGUZHI;
+  size: Size;
+  api: string;
+  codes: string[];
+}
+
+// 东方财富·牛熊指标
+export interface NiuXiongZhiBiaoOption {
+  type: WidgetType.DONGFANGCAIFU_NIUXIONGZHIBIAO;
+  size: Size;
+}
+
 export type WidgetProps =
   | NewsOption
   | XueQiuGuZhiOption
-  | NiuXiongZhiBiaoOption
-  | HuoDongOption;
+  | HuoDongOption
+  // new
+  | JinSeCaiJinNewsOption
+  | JinSeCaiJinActiveOption
+  | ZhiShuGuZhiOption
+  | NiuXiongZhiBiaoOption;
 
 export interface AppConfig {
   widgets: WidgetProps[];
