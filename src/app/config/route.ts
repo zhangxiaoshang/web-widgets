@@ -33,15 +33,14 @@ export async function GET() {
       {
         type: WidgetType.JINSECAIJING_NEWS,
         size: "large",
-        name: "MEXC·最新公告",
-        icon: "https://www.mexc.com/sites/favicon.ico",
-        origin: "https://www.mexc.com/zh-CN/support/sections/360000679912",
-
-        api: "https://www.mexc.com/help/announce/api/new/zh-CN/section/360000679912/articles?page=1&perPage=50",
-        dataProp: "results",
-        timeProp: "",
-        nameTemplate: "{title}",
-        linkTemplate: "https://www.mexc.com/zh-CN/support/articles/{id}",
+        name: "主编推荐",
+        icon: "https://www.jinse.com/favicon.ico",
+        origin: "https://www.jinse.com/lives",
+        api: "https://api.jinse.cn/noah/v2/chief/editor/recommends?page=1&limit=50",
+        dataProp: "data.list",
+        timeProp: "published_at",
+        nameTemplate: "title",
+        linkTemplate: "{jump_url}",
       },
 
       {
@@ -58,6 +57,20 @@ export async function GET() {
         nameProp: "title",
         statusProp: "activity_status_str",
         linkTemplate: "https://www.jinse.com/activity/{url_key}.html",
+      },
+
+      {
+        type: WidgetType.JINSECAIJING_NEWS,
+        size: "large",
+        name: "MEXC·最新公告",
+        icon: "https://www.mexc.com/sites/favicon.ico",
+        origin: "https://www.mexc.com/zh-CN/support/sections/360000679912",
+
+        api: "https://www.mexc.com/help/announce/api/new/zh-CN/section/360000679912/articles?page=1&perPage=50",
+        dataProp: "results",
+        timeProp: "",
+        nameTemplate: "{title}",
+        linkTemplate: "https://www.mexc.com/zh-CN/support/articles/{id}",
       },
 
       {
