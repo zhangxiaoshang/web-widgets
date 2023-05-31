@@ -15,16 +15,16 @@ export function Fullsize({ onClick }: { onClick: () => void }) {
         <path
           d="M24.0605 10L24.0239 38"
           stroke="#333"
-          stroke-width="4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M10 24L38 24"
           stroke="#333"
-          stroke-width="4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </a>

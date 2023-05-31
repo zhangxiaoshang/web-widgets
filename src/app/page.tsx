@@ -12,6 +12,9 @@ import { NiuXiongZhiBiao } from "./components/DongFangCaiFu/NiuXiongZhiBiao";
 // Zendesk
 import { Articles } from "./components/Zendesk/Articles";
 
+// MEXC
+import { MexcTicker } from "./components/mexc/Ticker";
+
 type RenderStrategy = {
   [key: number | string]: (props: WidgetProps) => React.ReactElement;
 };
@@ -43,6 +46,11 @@ const renderStrategy: RenderStrategy = {
   [WidgetType.ZENDESK_ARTICLES]: (props) => (
     /* @ts-expect-error Async Server Component */
     <Articles key={JSON.stringify(props)} {...props}></Articles>
+  ),
+
+  [WidgetType.MEXC_TICKER]: (props) => (
+    /* @ts-expect-error Async Server Component */
+    <MexcTicker key={JSON.stringify(props)} {...props}></MexcTicker>
   ),
 };
 

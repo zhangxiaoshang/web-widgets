@@ -4,6 +4,7 @@ export enum WidgetType {
   XUEQIU_ZHISHUGUZHI = "XUEQIU_ZHISHUGUZHI",
   DONGFANGCAIFU_NIUXIONGZHIBIAO = "DONGFANGCAIFU_NIUXIONGZHIBIAO",
   ZENDESK_ARTICLES = "ZENDESK_ARTICLES",
+  MEXC_TICKER = "MEXC_TICKER",
 }
 
 export interface NewsOption {
@@ -119,6 +120,20 @@ export interface ZendeskArticlesOption {
   keywords?: string[];
 }
 
+// mexc·24小时价格变动
+export interface MexcTickerOption {
+  type: WidgetType.MEXC_TICKER;
+  size: Size;
+
+  icon?: string;
+  name?: string;
+  origin?: string;
+
+  revalidate?: number;
+  api: string;
+  symbols: string[];
+}
+
 export type WidgetProps =
   | NewsOption
   | XueQiuGuZhiOption
@@ -128,7 +143,8 @@ export type WidgetProps =
   | JinSeCaiJinActiveOption
   | ZhiShuGuZhiOption
   | NiuXiongZhiBiaoOption
-  | ZendeskArticlesOption;
+  | ZendeskArticlesOption
+  | MexcTickerOption;
 
 export interface AppConfig {
   widgets: WidgetProps[];

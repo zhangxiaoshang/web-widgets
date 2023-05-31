@@ -69,6 +69,19 @@ export async function GET() {
         type: WidgetType.DONGFANGCAIFU_NIUXIONGZHIBIAO,
         size: "medium",
       },
+      // MEXC
+      {
+        type: WidgetType.MEXC_TICKER,
+        size: "medium",
+
+        name: "MEXC·最新价格",
+        icon: "https://www.mexc.com/sites/favicon.ico",
+        origin: "https://www.mexc.com/zh-CN/exchange/LBTC_USDT",
+
+        revalidate: 60,
+        api: "https://api.mexc.com/api/v3/ticker/24hr",
+        symbols: ["LBTC_USDT", "BTC_USDT", "ETH_USDT"],
+      },
 
       {
         type: WidgetType.ZENDESK_ARTICLES,

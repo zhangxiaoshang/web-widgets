@@ -1,7 +1,8 @@
 "use client";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useState, useContext } from "react";
 import { Fullsize } from "../Icon/Fullsize";
 import { Close } from "../Icon/Close";
+import { FullsizeContext } from "@/context/FullsizeContext";
 
 export type Size = "small" | "medium" | "large";
 
@@ -33,17 +34,19 @@ export function Widget(props: PropsWithChildren<WidgetProps>) {
   }
 
   return (
-    <div className={className}>
-      <div
-        className={`group/icon invisible group-hover/widget:visible flex gap-x-1 absolute right-2 top-3`}
-      >
-        {isFullsize ? (
-          <Close onClick={() => setIsFullsize(false)}></Close>
-        ) : (
-          <Fullsize onClick={() => setIsFullsize(true)}></Fullsize>
-        )}
+    <FullsizeContext.Provider value={isFullsize}>
+      <div className={className}>
+        <div
+          className={`group/icon invisible group-hover/widget:visible flex gap-x-1 absolute right-2 top-3`}
+        >
+          {isFullsize ? (
+            <Close onClick={() => setIsFullsize(false)}></Close>
+          ) : (
+            <Fullsize onClick={() => setIsFullsize(true)}></Fullsize>
+          )}
+        </div>
+        {children}
       </div>
-      {children}
-    </div>
+    </FullsizeContext.Provider>
   );
 }
