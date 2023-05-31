@@ -9,6 +9,9 @@ import { ZhiShuGuZhi } from "./components/XueQiu/ZhiShuGuZhi";
 // 东方财富
 import { NiuXiongZhiBiao } from "./components/DongFangCaiFu/NiuXiongZhiBiao";
 
+// Zendesk
+import { Articles } from "./components/Zendesk/Articles";
+
 type RenderStrategy = {
   [key: number | string]: (props: WidgetProps) => React.ReactElement;
 };
@@ -35,6 +38,11 @@ const renderStrategy: RenderStrategy = {
   [WidgetType.DONGFANGCAIFU_NIUXIONGZHIBIAO]: (props) => (
     /* @ts-expect-error Async Server Component */
     <NiuXiongZhiBiao key={JSON.stringify(props)} {...props}></NiuXiongZhiBiao>
+  ),
+
+  [WidgetType.ZENDESK_ARTICLES]: (props) => (
+    /* @ts-expect-error Async Server Component */
+    <Articles key={JSON.stringify(props)} {...props}></Articles>
   ),
 };
 

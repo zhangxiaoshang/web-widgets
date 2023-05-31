@@ -60,20 +60,6 @@ export async function GET() {
       },
 
       {
-        type: WidgetType.JINSECAIJING_NEWS,
-        size: "large",
-        name: "MEXC·最新公告",
-        icon: "https://www.mexc.com/sites/favicon.ico",
-        origin: "https://www.mexc.com/zh-CN/support/sections/360000679912",
-
-        api: "https://www.mexc.com/help/announce/api/new/zh-CN/section/360000679912/articles?page=1&perPage=50",
-        dataProp: "results",
-        timeProp: "",
-        nameTemplate: "{title}",
-        linkTemplate: "https://www.mexc.com/zh-CN/support/articles/{id}",
-      },
-
-      {
         type: WidgetType.XUEQIU_ZHISHUGUZHI,
         size: "large",
         api: "https://danjuanfunds.com/djapi/index_eva/dj",
@@ -82,6 +68,21 @@ export async function GET() {
       {
         type: WidgetType.DONGFANGCAIFU_NIUXIONGZHIBIAO,
         size: "medium",
+      },
+
+      {
+        type: WidgetType.ZENDESK_ARTICLES,
+        size: "small",
+        name: "MEXC·最新公告",
+        icon: "https://www.mexc.com/sites/favicon.ico",
+        origin: "https://www.mexc.com/zh-CN/support/sections/360000679912",
+
+        api: "https://www.mexc.com/help/announce/api/new/zh-CN/section/360000679912/articles?page=1&perPage=50",
+        dataProp: "results",
+        timeProp: "createdAt",
+        nameTemplate: "{title}",
+        linkTemplate: "https://www.mexc.com/zh-CN/support/articles/{id}",
+        keywords: ["LBTC"], // 大小写不敏感
       },
 
       // {

@@ -34,8 +34,9 @@ export function parseTimestamp(val: string): number {
     return dayjs.tz(val).valueOf();
   }
 
-  console.log("位实现该时间的解析：", val);
-  return Date.now();
+  // console.log("未实现该时间的解析：", val);
+  // 默认解析方式
+  return dayjs.tz(val).valueOf();
 }
 
 /**

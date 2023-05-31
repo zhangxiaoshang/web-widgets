@@ -3,6 +3,7 @@ export enum WidgetType {
   JINSECAIJING_ACTIVE = "JINSECAIJING_ACTIVE",
   XUEQIU_ZHISHUGUZHI = "XUEQIU_ZHISHUGUZHI",
   DONGFANGCAIFU_NIUXIONGZHIBIAO = "DONGFANGCAIFU_NIUXIONGZHIBIAO",
+  ZENDESK_ARTICLES = "ZENDESK_ARTICLES",
 }
 
 export interface NewsOption {
@@ -98,6 +99,26 @@ export interface NiuXiongZhiBiaoOption {
   size: Size;
 }
 
+// zendesk 公告
+export interface ZendeskArticlesOption {
+  type: WidgetType.ZENDESK_ARTICLES;
+  size: Size;
+
+  icon?: string;
+  name?: string;
+  origin?: string;
+
+  revalidate?: number;
+  api: string;
+
+  dataProp: string;
+  nameTemplate: string;
+  linkTemplate: string;
+  timeProp: string;
+
+  keywords?: string[];
+}
+
 export type WidgetProps =
   | NewsOption
   | XueQiuGuZhiOption
@@ -106,7 +127,8 @@ export type WidgetProps =
   | JinSeCaiJinNewsOption
   | JinSeCaiJinActiveOption
   | ZhiShuGuZhiOption
-  | NiuXiongZhiBiaoOption;
+  | NiuXiongZhiBiaoOption
+  | ZendeskArticlesOption;
 
 export interface AppConfig {
   widgets: WidgetProps[];
